@@ -13,8 +13,8 @@
                 "${workspaceFolder}\\INC\\simple_functions\\*.c",
                 "${workspaceFolder}\\INC\\sort_functions\\*.h",
                 "${workspaceFolder}\\INC\\sort_functions\\*.c",
-                "${workspaceFolder}\\INC\\C_interviev_questions\\*.h",
-                "${workspaceFolder}\\INC\\C_interviev_questions\\*.c",
+                "${workspaceFolder}\\INC\\trainingFunctions\\*.h",
+                "${workspaceFolder}\\INC\\trainingFunctions\\*.c",
                 "${file}",
                 "-o",
                 "${workspaceFolder}\\xOutput\\${fileBasenameNoExtension}.exe"
