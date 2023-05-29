@@ -1,12 +1,1 @@
-{
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"files.associations": {
-			"jobintervievquestions.h": "c"
-		}
-	}
-}
+
