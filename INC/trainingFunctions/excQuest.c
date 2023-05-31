@@ -1,36 +1,62 @@
 #include "excQuest.h"
 
-int Question39_DuplicatesInArray(void)
+/*******************************************************************************
+ * @name    static AmountOfElementsInArray
+ * @brief   ...
+ * @param   ...
+ * @param   ...
+ * @note    ...
+ * @return  uint8_t
+*/
+static void _PrintArray(char* pArray, uint8_t n)
 {
-  int n, a[100], b[100], calc = 0, i, j,count;
-  printf("Enter no. of elements in array: ");
-  scanf("%d", &n);
-  printf("Enter %d integers: ", n);
-  for (i = 0; i < n; i++)
+  uint8_t i;
+  printf("LIST: \n");
+  
+  for(i=0; i<n; i++)
   {
-      scanf("%d", &a[i]);
+    printf("| %x = %x | ", i, pArray[i]);
   }
-        
-  for (i = 0; i<n; i++) 
+  printf("\n");
+}
+/*******************************************************************************
+ * @name    RemoveDuplicatesInArray
+ * @brief   Check list for duplicates elements
+ * @param   pArraySRC - Pointer to source array
+ * @param   nSCRmax   - Source array element amount
+ * @note    ...
+ * @return  Lenght of the new list
+*/
+uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax)
+{
+  char pArrayDST[MAX_ARRAY_ELEMENTS];
+  uint8_t i, j;
+  uint8_t nDST = 0x00;
+
+  if(nSCRmax >= MAX_ARRAY_ELEMENTS) return 0xFF;
+
+  for(i=0; i<nSCRmax; i++)
+  {// Loop throught all elements in source list
+  
+    for(j=0; j<nDST; j++)
+    {// Check if element exist
+      if(pArraySRC[i] == pArrayDST[j]) 
+        break; 
+    }
+
+    if(nDST == j)
+    {// Unique element to next index
+      pArrayDST[nDST] = pArraySRC[i];
+      nDST++;
+    }
+  }
+
+  for(j=0; j<nDST; j++)
   {
-      for (j = 0; j<calc; j++) 
-      {
-          if(a[i] == b[j])
-          break;  
-      }
-      if (j== calc) 
-      {
-            b[calc] = a[i];
-            calc++; 
-      }
-    }
-    
-    printf("Array obtained after removing duplicate elements: ");
-    for (i = 0; i<calc; i++) 
-    { 
-          printf("%d ", b[i]);
-    }
-    return 0;   
+    pArraySRC[j] = pArrayDST[j];
+  }
+
+  return nDST;   
 }
 
 /***********************************************************************************************
@@ -61,12 +87,12 @@ int Question43_palindrome_number_isPalindrome(int num)
 int Question43_palindrome_number_reverse(int num)
 {
   int rem;
-  static int sum=0;
-  if(num!=0)
+  static int sum = 0;
+  if(num != 0)
   {
-    rem=num%10;
-    sum=sum*10+rem;
-    Question43_palindrome_number_reverse(num/10);
+    rem = num % 10;
+    sum = sum * 10 + rem;
+    Question43_palindrome_number_reverse(num / 10);
   }
   else  
   { return sum;}
@@ -240,6 +266,14 @@ int Question57_number_EvenOrOdd(int num)
 
 /***********************************************************************************************
  * 58. Reverse the Linked List. Input: 1->2->3->4->5->NULL Output: 5->4->3->2->1->NULL
+*/
+/*******************************************************************************
+ * @name    RemoveDuplicatesInArray
+ * @brief   ...
+ * @param   ...
+ * @param   ...
+ * @note    ...
+ * @return  uint8_t
 */
 void Question56_reverseObjectsList(MallocControlData_t* pMallocControlData)
 { 

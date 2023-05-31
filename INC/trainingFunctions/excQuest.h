@@ -1,13 +1,12 @@
 #include <stdio.h>      /* printf, scanf, NULL */
 #include <stdint.h>
 #include <stdlib.h>     /* malloc, free, rand */
-#include <stdint.h>
 #include <conio.h>
 
-int Question39_DuplicatesInArray(void);
+#define MAX_ARRAY_ELEMENTS (uint8_t)(0x20)
 
 /***********************************************************************************************
- * 41. Write a program to get the higher and lower nibble of a byte without using shift operator?
+ * 
 */
 typedef struct full_byte
 {
@@ -20,6 +19,36 @@ typedef union
     uint8_t data;
     Q_41_struct_t dataSlise;
 }Q_41_union_t;
+//=============================================================================================
+
+/***********************************************************************************************
+ * 
+*/
+#define DATA_LEN 8
+typedef struct MemoryMember_t
+{
+    struct MemoryMember_t *pPrev;
+    struct MemoryMember_t *pNext;
+    uint8_t mydata[DATA_LEN];
+}MemoryMember_t;
+typedef struct
+{
+    struct MemoryMember_t *pTail;
+    struct MemoryMember_t *pHead; 
+    uint8_t n;
+    uint8_t init;
+}MallocControlData_t;
+//=============================================================================================
+
+/***********************************************************************************************
+ * 
+*/
+uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax);
+
+/***********************************************************************************************
+ * 41. Write a program to get the higher and lower nibble of a byte without using shift operator?
+*/
+
 int Question41_lowernibble(void);
 //==============================================================================================
 
@@ -77,20 +106,7 @@ int Question56_number_EvenOrOdd(int num);
 /***********************************************************************************************
  * 58. Reverse the Linked List. Input: 1->2->3->4->5->NULL Output: 5->4->3->2->1->NULL
 */
-#define DATA_LEN 8
-typedef struct MemoryMember_t
-{
-    struct MemoryMember_t *pPrev;
-    struct MemoryMember_t *pNext;
-    uint8_t mydata[DATA_LEN];
-}MemoryMember_t;
-typedef struct
-{
-    struct MemoryMember_t *pTail;
-    struct MemoryMember_t *pHead; 
-    uint8_t n;
-    uint8_t init;
-}MallocControlData_t;
+
 void Question56_reverseObjectsList(MallocControlData_t* pMallocControlData);
 //==============================================================================================
 
