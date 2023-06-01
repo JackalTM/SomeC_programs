@@ -3,7 +3,7 @@
 #include <stdlib.h>     /* malloc, free, rand */
 #include <conio.h>
 
-#define MAX_ARRAY_ELEMENTS (uint8_t)(0x20)
+#define EXC_QUEST_ARRAY_MAX (uint8_t)(0x20)
 
 /***********************************************************************************************
  * 
