@@ -29,9 +29,10 @@ static void _PrintArray(char* pArray, uint8_t n)
 */
 uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax)
 {
-  char pArrayDST[MAX_ARRAY_ELEMENTS];
-  uint8_t i, j;
   uint8_t nDST = 0x00;
+  char pArrayDST[MAX_ARRAY_ELEMENTS];
+
+  uint8_t i, j;
 
   if(nSCRmax >= MAX_ARRAY_ELEMENTS) return 0xFF;
 
@@ -39,7 +40,7 @@ uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax)
   {// Loop throught all elements in source list
   
     for(j=0; j<nDST; j++)
-    {// Check if element exist
+    {// Check if element exist in destination list
       if(pArraySRC[i] == pArrayDST[j]) 
         break; 
     }
@@ -52,9 +53,7 @@ uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax)
   }
 
   for(j=0; j<nDST; j++)
-  {
-    pArraySRC[j] = pArrayDST[j];
-  }
+  { pArraySRC[j] = pArrayDST[j];}
 
   return nDST;   
 }
