@@ -29,33 +29,35 @@ static void _PrintArray(char* pArray, uint8_t n)
 */
 uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax)
 {
-  uint8_t nDST = 0x00;
-  char pArrayDST[MAX_ARRAY_ELEMENTS];
+  char arrList[EXC_QUEST_ARRAY_MAX];
+  char arrHead = 0x00;
 
-  uint8_t i, j;
+  uint8_t i, j, idx;
 
-  if(nSCRmax >= MAX_ARRAY_ELEMENTS) return 0xFF;
+  if(nSCRmax >= EXC_QUEST_ARRAY_MAX) return 0xFF;
 
   for(i=0; i<nSCRmax; i++)
   {// Loop throught all elements in source list
-  
-    for(j=0; j<nDST; j++)
-    {// Check if element exist in destination list
-      if(pArraySRC[i] == pArrayDST[j]) 
-        break; 
-    }
 
-    if(nDST == j)
-    {// Unique element to next index
-      pArrayDST[nDST] = pArraySRC[i];
-      nDST++;
+    for(j=0; j<arrHead; j++)
+    {
+      if(pArraySRC[i] == arrList[j]) 
+      {// Element is not unique.
+        goto NOT_UNIQ;}
     }
+    
+    // In new list element is not fount.
+    // Element is unique.
+    arrList[arrHead] = pArraySRC[i];
+    arrHead++;
+  
+    NOT_UNIQ:;
   }
 
-  for(j=0; j<nDST; j++)
-  { pArraySRC[j] = pArrayDST[j];}
+  for(j=0; j<arrHead; j++)
+  { pArraySRC[j] = arrList[j];}
 
-  return nDST;   
+  return arrHead;   
 }
 
 /***********************************************************************************************
