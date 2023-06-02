@@ -12,13 +12,13 @@ typedef struct full_byte
 {
     uint8_t data1 : 4;
     uint8_t data2 : 4;
-}Q_41_struct_t;
+}byteDataSliceStruct_t;
 
 typedef union 
 {
-    uint8_t data;
-    Q_41_struct_t dataSlise;
-}Q_41_union_t;
+    uint8_t                 data;
+    byteDataSliceStruct_t   dataSlise;
+}byteDataSliceUnion_t;
 //=============================================================================================
 
 /***********************************************************************************************
@@ -49,28 +49,25 @@ uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax);
  * 41. Write a program to get the higher and lower nibble of a byte without using shift operator?
 */
 
-int Question41_lowernibble(void);
+uint8_t DataSliceWithUnion(void);
 //==============================================================================================
 
 /***********************************************************************************************
  * 43. Write a C program to check if it is a palindrome number or not using a recursive method.
 */
-int Question43_palindrome_number_isPalindrome(int num);
-int Question43_palindrome_number_reverse(int num);
-int Question43_palindrome_number(int Num);
+uint8_t PalindromeNumber(uint32_t Num);
 //==============================================================================================
 
 /***********************************************************************************************
  * 44. C program to check the given number format is in binary or not.
 */
-int Question44_binary_or_not(int Num);
+uint32_t CheckIfNumberIsBinary(uint32_t Num);
 //==============================================================================================
 
 /***********************************************************************************************
  * 45. C Program to find a sum of digits of a number using recursion.
 */
-int Question45_find_SUM_recursion_sumOfDigits(int num, int* pCallsAmount);
-int Question45_find_SUM_recursion(int Num);
+uint8_t SumByRecursion(uint32_t Num);
 //==============================================================================================
 
 /***********************************************************************************************

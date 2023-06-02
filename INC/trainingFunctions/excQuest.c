@@ -63,9 +63,9 @@ uint8_t RemoveDuplicatesInArray(char* pArraySRC, uint8_t nSCRmax)
 /***********************************************************************************************
  * 41. Write a program to get the higher and lower nibble of a byte without using shift operator?
 */
-int Question41_lowernibble(void)
+uint8_t DataSliceWithUnion(void)
 {
-  Q_41_union_t  tData;
+  byteDataSliceUnion_t  tData;
 
   tData.data = 0xAB;
 
@@ -79,92 +79,96 @@ int Question41_lowernibble(void)
 /***********************************************************************************************
  * 43. Write a C program to check if it is a palindrome number or not using a recursive method.
 */
-int Question43_palindrome_number_isPalindrome(int num)
+static uint32_t _PalindromeNumberReverse(uint32_t* pSum, uint32_t Num)
 {
-  if(num == Question43_palindrome_number_reverse(num)) 
-  { return 1;}
-  else { return 0;}
-}
-int Question43_palindrome_number_reverse(int num)
-{
-  int rem;
-  static int sum = 0;
-  if(num != 0)
+  uint32_t rem;
+  if(Num != 0)
   {
-    rem = num % 10;
-    sum = sum * 10 + rem;
-    Question43_palindrome_number_reverse(num / 10);
+    rem = Num % 0x10;
+    *pSum = (*pSum) * 0x10 + rem;
+    _PalindromeNumberReverse(pSum, (Num / 0x10));
+    return *pSum;
   }
   else  
-  { return sum;}
-  return sum;
+  { return *pSum;}
 }
-int Question43_palindrome_number(int Num)
+uint8_t PalindromeNumber(uint32_t Num)
 {
+  uint32_t tSum = (uint32_t)0x00;
+
   printf("========================================== \n");
-  printf("Is the given numbe a palindrome??? %d \n", Num);
-  if(Question43_palindrome_number_isPalindrome(Num) == 1)
+  printf("Is the given numbe a palindrome??? %X \n", Num);
+
+  if(Num == _PalindromeNumberReverse(&tSum, Num))
   { printf("TRUE \n");}
   else
   { printf("FALSE \n");}
+
   printf("========================================== \n");
-  return 0;
+
+  return 0x00;
 }
 //==============================================================================================
 
 /***********************************************************************************************
  * 44. C program to check the given number format is in binary or not.
 */
-int Question44_binary_or_not(int Num)
+uint32_t CheckIfNumberIsBinary(uint32_t Num)
 {
-	int j;
+	uint32_t res;
+
   printf("========================================== \n");
-	printf("Does number %d is binary?? \n", Num);
-  while(Num > 0x00)
+	printf("Does number %x is binary?? \n", Num);
+
+  while((Num > 0x00) && (Num < 0xFFFFFFF0))
   {
-      j = Num % 10;
-      if((j != 0) && (j != 1 ))
-      {
-          printf("FALSE \n");
-          break;
-      }
-
-      Num = Num / 10;
-      if(Num == 0x00)
-      { printf("TRUE \n");}
+    res = Num % 0x10;
+    if((res != 0x0) && (res != 0x1))
+    {
+      printf("FALSE \n");
+      break;
+    }
+    else
+    { Num = Num / 0x10;}
+    
+    if(Num == 0x00)
+    { printf("TRUE \n");}
   }
+
   printf("========================================== \n");
 
-  return 0;
+  return 0x00;
 }
 //==============================================================================================
 
 /***********************************************************************************************
  * 45. C Program to find a sum of digits of a number using recursion.
 */
-int Question45_find_SUM_recursion_sumOfDigits(int num, int* pCallsAmount)
+static int32_t _SumByRecursionSum(uint32_t* pSum, uint8_t* pCallsAmount, uint32_t num)
 {
-  static int sum = 0;
-  int rem;
+  uint32_t rem;
 
-  if(*(pCallsAmount) > 10)  { return -1;}
+  if(*(pCallsAmount) > 0x8)  { return -1;}
   else                      { *(pCallsAmount) = *(pCallsAmount) + 1;}
 
-  sum = sum + (num % 10);
-  rem = num / 10;
+  *pSum = *pSum + (num % 0x10);
+  rem = num / 0x10;
 
-  if(rem > 0x00)  { Question45_find_SUM_recursion_sumOfDigits(rem, pCallsAmount);}
-  else            { return sum;}
+  if(rem > 0x00)  { _SumByRecursionSum(pSum, pCallsAmount, rem);}
+  else            { return *pSum;}
 }
-int Question45_find_SUM_recursion(int Num)
+uint8_t SumByRecursion(uint32_t Num)
 {
-  int tCallsAmount = 0;
-  printf("========================================== \n");
-	printf("Sum of digits from a number %d \n", Num);
+  uint32_t  tSum = 0x00;
+  uint8_t   tCallsAmount = 0x00;
 
-  Num = Question45_find_SUM_recursion_sumOfDigits(Num, &tCallsAmount);
-  printf("Sum of digits = %d \n", Num);
-  printf("Recursion number = %d \n", tCallsAmount);
+  printf("========================================== \n");
+	printf("Sum of digits from a number %x \n", Num);
+
+  Num = _SumByRecursionSum((uint32_t*)&tSum, (uint8_t*)&tCallsAmount, Num);
+
+  printf("Sum of digits = %x \n", Num);
+  printf("Recursion number = %x \n", tCallsAmount);
 
   printf("========================================== \n");
 }
