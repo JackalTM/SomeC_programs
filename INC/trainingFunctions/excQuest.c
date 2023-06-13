@@ -274,13 +274,12 @@ int Question57_number_EvenOrOdd(int num)
 */
 /*******************************************************************************
  * @name    RemoveDuplicatesInArray
- * @brief   ...
- * @param   ...
- * @param   ...
- * @note    ...
+ * @brief   Reverse Head and tail direction in dynamic obj alocation
+ * @param   pMallocControlData  Pointer to dynamic object structure
+ * @note    See MallocControlData_t structure
  * @return  uint8_t
 */
-void Question56_reverseObjectsList(MallocControlData_t* pMallocControlData)
+void ReverseDynamicListObj(MallocControlData_t* pMallocControlData)
 { 
   if(pMallocControlData->init != 0xFF)  return;
   if(pMallocControlData->n == 0x00)     return;
