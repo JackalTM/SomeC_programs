@@ -14,9 +14,10 @@ typedef struct
     uint8_t (*pFunXOR)(uint8_t, uint8_t);
     uint8_t (*pFunNOT)(uint8_t);
     uint8_t (*pFunArr[3])(uint8_t, uint8_t);
-}quasiClassTestBasic_t;
+}structOfFunctionPointers_t;
 
 pFunType_oneArg FunctionPointerInAndOutTest1(pFunType_oneArg inPfun);
 pFunType_twoArg FunctionPointerInAndOutTest2(pFunType_twoArg pFunIN[], uint8_t maxn,uint8_t n);
 
-void CallTest1(void);
+void CallFunctionPointerTest1(void);
+void CallFunctionPointerTest2(void);
